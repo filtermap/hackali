@@ -1,0 +1,38 @@
+# FROM kalilinux/kali-rolling:latest
+FROM kalilinux/kali:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get upgrade -y
+
+# install packages for vscode remote containers
+RUN apt-get -y install --no-install-recommends apt-utils dialog wget ca-certificates 2>&1
+RUN apt-get -y install --no-install-recommends \
+    git \
+    openssh-client \
+    less \
+    iproute2 \
+    procps \
+    curl \
+    wget \
+    unzip \
+    lsb-release \
+    ca-certificates \
+    apt-transport-https \
+    libc6 \
+    libgcc1 \
+    libgssapi-krb5-2 \
+    libicu[0-9][0-9] \
+    liblttng-ust0 \
+    libssl1.1 \
+    libstdc++6 \
+    zlib1g
+RUN apt-get install -y zsh
+RUN  sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# RUN apt-get -y install --no-install-recommends kali-linux-full
+RUN apt-get -y install --no-install-recommends metasploit-framework
+# RUN apt-get autoremove -y \
+#     && apt-get clean -y \
+#     && rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND=dialog

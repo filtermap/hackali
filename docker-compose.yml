@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  kali:
+    build:
+      context: .
+      dockerfile: Dockerfile-kali
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - .:/workspace:cached
+  ubuntu:
+    build:
+      context: .
+      dockerfile: Dockerfile-ubuntu
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    volumes:
+      - ./ubuntu:/workspace:cached
